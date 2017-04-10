@@ -1,0 +1,17 @@
+{
+  "name": "idea-pirates-retirement",
+  "description": "Idea Pirates - Retirement",
+  "main": "index.js",
+  "authors": [
+    "Chris Greeff <chris.r.greeff@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/chrisgreeff/idea-pirates-retirement",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
