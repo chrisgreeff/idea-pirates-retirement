@@ -5,5 +5,5 @@ import ReactDOM from 'react-dom'
 import { Router, Route, Redirect, browserHistory } from 'react-router'
 
 ReactDOM.render((
-  Yoza
+  <div>Yoza</div>
 ), document.getElementById('app'))
