@@ -1,0 +1,38 @@
+.ip-input-base {
+  box-sizing: border-box;
+  font-family: @ip-font-primary;
+  font-weight: @ip-font-weight--regular;
+  font-size: @ip-font-size--body-content;
+  -webkit-font-smoothing: antialiased;
+  height: 40px;
+  width: 100%;
+  box-shadow: none;
+  outline: none;
+
+  &::-webkit-input-placeholder,
+  &:-moz-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
+  &[placeholder] {
+    text-overflow: ellipsis;
+    color: @colour-cadet-blue;
+  }
+}
+
+.ip-input {
+  &:extend(.ip-input-base);
+
+  padding: 12px;
+  border: 1px solid @colour-biscay;
+  border-radius: 5px;
+  background-color: @colour-white;
+  transition: border-color ease-in-out .2s;
+
+  &:focus { border-color: lighten(@colour-biscay, 20%); }
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
