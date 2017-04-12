@@ -8,6 +8,8 @@ import { createStore } from 'redux'
 import Age from './pages/age'
 import Salary from './pages/salary'
 import Location from './pages/location'
+import Crunching from './pages/crunching'
+import Result from './pages/result'
 import appReducer from './reducers/app'
 
 // Init store
@@ -20,6 +22,8 @@ ReactDOM.render((
       <Route path='age' component={Age} />
       <Route path='salary' component={Salary} />
       <Route path='location' component={Location} />
+      <Route path='crunching' component={Crunching} />
+      <Route path='result' component={Result} />
       <Redirect path='*' to='age' />
     </Route>
   </Router>

@@ -4,14 +4,25 @@ import React from 'react'
 import IpNavLink from './nav-link'
 
 export default class IpNav extends React.Component {
-  render () {
+  constructor (props) {
     const { appStore } = window
 
+    super(props)
+
+    this.state = appStore.getState()
+
+    appStore.subscribe(() => {
+      this.state = appStore.getState()
+      this.forceUpdate()
+    })
+  }
+
+  render () {
     return (
       <div className='ip-nav'>
-        <IpNavLink value={appStore.getState().age} to='age'>Age</IpNavLink>
-        <IpNavLink value={appStore.getState().salary} to='salary'>Salary</IpNavLink>
-        <IpNavLink value={appStore.getState().location} to='location'>Location</IpNavLink>
+        <IpNavLink value={this.state.age} to='age'>Age</IpNavLink>
+        <IpNavLink value={this.state.salary} to='salary'>Salary</IpNavLink>
+        <IpNavLink value={this.state.location} to='location'>Location</IpNavLink>
       </div>
     )
   }

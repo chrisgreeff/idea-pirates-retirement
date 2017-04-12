@@ -1,34 +1,56 @@
 'use strict'
 
 import React from 'react'
+import { browserHistory } from 'react-router'
 import IpNav from '../components/nav'
 import IpSection from '../components/section'
 import APP_ACTIONS from '../constants/app-actions'
 
 export default class Age extends React.Component {
-  render () {
+  constructor (props) {
     const { appStore } = window
 
+    super(props)
+
+    this.state = { value: appStore.getState().age || '' }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleChange (event) {
+    const { appStore } = window
+    const value = event.target.value
+
+    appStore.dispatch({ type: APP_ACTIONS.setAge, value })
+    this.setState({ value })
+  }
+
+  handleSubmit (event) {
+    browserHistory.push('/salary')
+
+    event.preventDefault()
+  }
+
+  render () {
     return (
       <div className='ip-page'>
         <div>
           <IpSection>
-            <div className='ip-flex ip-flex--align-end'>
+            <form className='ip-flex ip-flex--align-end' onSubmit={this.handleSubmit}>
               <div className='ip-field'>
                 <div className='ip-label'>Tell us your age...</div>
                 <div className='ip-value'>
-                  <input className='ip-input' type='number' />
+                  <input className='ip-input'
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    type='number' />
                 </div>
               </div>
-              <button className='ip-next-button ip-mlm' onClick={() => {
-                appStore.dispatch({
-                  type: APP_ACTIONS.setAge,
-                  value: 0
-                })
-              }}>
+              <button className='ip-next-button ip-mlm'>
                 <i className='fa fa-arrow-right' />
               </button>
-            </div>
+            </form>
           </IpSection>
           <IpNav />
         </div>
