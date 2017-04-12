@@ -36,3 +36,16 @@
     opacity: 0.5;
   }
 }
+
+// Default Input Style Overrides
+input[placeholder],
+::-moz-placeholder,
+input:-moz-placeholder { text-overflow: ellipsis; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}

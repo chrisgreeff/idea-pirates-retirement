@@ -1,0 +1,18 @@
+.ip-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ip-nav-link {
+  color: @colour-biscay;
+  text-decoration: none;
+  text-align: center;
+
+  .ip-nav-link-copy { font-weight: @ip-font-weight--light; }
+  .ip-nav-link-icon { color: @colour-cadet-blue; }
+
+  &.ip-active {
+    .ip-nav-link-copy { font-weight: @ip-font-weight--bold; }
+    .ip-nav-link-icon { color: @colour-west-side; }
+  }
+}
