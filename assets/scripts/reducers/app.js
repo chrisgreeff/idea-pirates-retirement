@@ -1,7 +1,6 @@
 'use strict'
 
 import { assign } from 'lodash'
-import { createStore } from 'redux'
 import APP_ACTIONS from '../constants/app-actions'
 
 const appReducer = (state = {}, action) => {
@@ -18,7 +17,9 @@ const appReducer = (state = {}, action) => {
       return assign(state, {
         location: action.value
       })
+    default:
+      return state
   }
 }
 
-export default createStore(appReducer)
+export default appReducer

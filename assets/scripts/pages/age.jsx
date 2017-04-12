@@ -1,13 +1,14 @@
 'use strict'
 
 import React from 'react'
-import IpSection from '../components/section'
 import IpNav from '../components/nav'
-import appStore from '../stores/app'
+import IpSection from '../components/section'
 import APP_ACTIONS from '../constants/app-actions'
 
 export default class Age extends React.Component {
   render () {
+    const { appStore } = window
+
     return (
       <div className='ip-page'>
         <div>
