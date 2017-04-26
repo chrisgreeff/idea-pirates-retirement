@@ -8,7 +8,7 @@ export default class IpQuestionPanel extends React.Component {
     const { suffix, prefix, title, imgPath, subTitle, className, changeHandler, value, index } = this.props
 
     return (
-      <div className={`ip-panel ip-align-center ${className || ''}`}>
+      <div className={`ip-panel ip-panel--clickable ip-align-center ${className || ''}`}>
         <div className='ip-panel-image-container'>
           <img className='ip-panel-image' src={imgPath} />
         </div>
@@ -22,7 +22,10 @@ export default class IpQuestionPanel extends React.Component {
         </div>
 
         <div className='ip-value ip-mtxl ip-mbxl'>
-          <input className={`ip-input ${suffix ? 'ip-input--suffix' : ''} ${prefix ? 'ip-input--prefix' : ''}`}
+          <input
+            className={
+              `ip-input ip-panel-input ${suffix ? 'ip-input--suffix' : ''} ${prefix ? 'ip-input--prefix' : ''}`
+            }
             value={value}
             onChange={changeHandler}
             type='number' />
