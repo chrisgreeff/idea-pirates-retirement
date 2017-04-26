@@ -14,9 +14,14 @@ export default class IpApp extends React.Component {
       location: ''
     }
 
+    this.handlePanelBlur = this.handlePanelBlur.bind(this)
     this.handleAgeChange = this.handleAgeChange.bind(this)
     this.handleSalaryChange = this.handleSalaryChange.bind(this)
     this.handleLocationChange = this.handleLocationChange.bind(this)
+  }
+
+  handlePanelBlur () {
+    console.log(this.state)
   }
 
   handleAgeChange (event) {
@@ -56,6 +61,7 @@ export default class IpApp extends React.Component {
               suffix='years'
               index={1}
               imgPath='/images/age.png'
+              blurHandler={this.handlePanelBlur}
               changeHandler={this.handleAgeChange}
               value={this.state.age} />
             <IpQuestionPanel className='ip-mrxl'
@@ -65,6 +71,7 @@ export default class IpApp extends React.Component {
               suffix='annually'
               index={2}
               imgPath='/images/salary.png'
+              blurHandler={this.handlePanelBlur}
               changeHandler={this.handleSalaryChange}
               value={this.state.salary} />
             <IpQuestionPanel className='ip-mrxl'
@@ -72,6 +79,7 @@ export default class IpApp extends React.Component {
               subTitle='We are able to calculate an approximation of your expenditure based on your location.'
               index={3}
               imgPath='/images/location.png'
+              blurHandler={this.handlePanelBlur}
               changeHandler={this.handleLocationChange}
               value={this.state.location} />
           </div>
