@@ -33,6 +33,7 @@ export default class IpQuestionPanel extends React.Component {
       prefix,
       subTitle,
       suffix,
+      textType,
       title,
       value
     } = this.props
@@ -52,8 +53,9 @@ export default class IpQuestionPanel extends React.Component {
         <div className='ip-panel-top-container'>
           <img className='ip-panel-image' src={imgPath} />
           <div className='ip-panel-phase-2-content'>
-            <div className='ip-panel-phase-2-content-primary'>{formattedValue || value}</div>
-            <div className='ip-panel-phase-2-content-secondary'>{phase2Content}</div>
+            {phase2Content && <div className='ip-panel-phase-2-content-primary'>{formattedValue || value}</div>}
+            {phase2Content && <div className='ip-panel-phase-2-content-secondary'>{phase2Content}</div>}
+            {!phase2Content && <div className='ip-panel-phase-2-content-secondary'>{value}</div>}
           </div>
         </div>
 
@@ -74,7 +76,7 @@ export default class IpQuestionPanel extends React.Component {
               ref={(input) => { this.input = input }}
               value={value}
               onChange={changeHandler}
-              type='number' />
+              type={textType || 'number'} />
             {prefix && <div className='ip-value-prefix'>{prefix}</div>}
             {suffix && <div className='ip-value-suffix'>{suffix}</div>}
           </div>

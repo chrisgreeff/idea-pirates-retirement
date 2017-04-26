@@ -5,21 +5,27 @@ import React from 'react'
 import IpQuestionPanel from './components/question-panel.jsx'
 import IpSection from './components/section.jsx'
 
+const initialState = {
+  age: 0,
+  salary: 0,
+  location: '',
+  phase: 1
+}
+
 export default class IpApp extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      age: 0,
-      salary: 0,
-      location: '',
-      phase: 1
-    }
-
+    this.state = initialState
+    this.handleReset = this.handleReset.bind(this)
     this.handlePanelBlur = this.handlePanelBlur.bind(this)
     this.handleAgeChange = this.handleAgeChange.bind(this)
     this.handleSalaryChange = this.handleSalaryChange.bind(this)
     this.handleLocationChange = this.handleLocationChange.bind(this)
+  }
+
+  handleReset () {
+    this.setState(initialState)
   }
 
   handlePanelBlur () {
@@ -53,7 +59,11 @@ export default class IpApp extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='ip-full-h ip-relative'>
+        <a className='ip-link ip-link--reset' href='javascript:void(0)' onClick={this.handleReset}>
+          <i className='fa fa-refresh ip-mrs' />
+          Reset
+        </a>
         <IpSection>
           <div className='ip-title ip-mtxl'>
             Retire&#39;o&#39;rama
@@ -96,6 +106,7 @@ export default class IpApp extends React.Component {
               imgPath='/images/location.png'
               blurHandler={this.handlePanelBlur}
               changeHandler={this.handleLocationChange}
+              textType='text'
               value={this.state.location} />
           </div>
         </IpSection>

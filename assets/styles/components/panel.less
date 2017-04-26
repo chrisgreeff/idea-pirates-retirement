@@ -18,12 +18,14 @@
 
   &.ip-panel--phase-2 {
     max-height: 116px;
+    transition-duration: 0.6s;
 
     .ip-panel-image {
       left: 0;
       width: 65px;
     }
 
+    .ip-panel-top-container { padding-left: 75px; }
     .ip-panel-bottom-container { opacity: 0; }
     .ip-panel-phase-2-content { opacity: 1; right: 0; }
 
@@ -60,7 +62,7 @@
   position: absolute;
   left: ~"calc(50% - 60px)";
   transition-property: left, width;
-  transition-duration: 0.3s;
+  transition-duration: 0.6s;
   transition-timing-function: ease-in-out;
 }
 
@@ -71,7 +73,7 @@
 
 .ip-panel-bottom-container {
   opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
 }
 
 .ip-panel-phase-2-content {
@@ -82,7 +84,7 @@
   font-weight: @ip-font-weight--regular;
   opacity: 0;
   transition-property: opacity, right;
-  transition-duration: 0.3s;
+  transition-duration: 0.6s;
   transition-timing-function: ease-in-out;
 }
 
