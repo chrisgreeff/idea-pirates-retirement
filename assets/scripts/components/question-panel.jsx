@@ -23,7 +23,19 @@ export default class IpQuestionPanel extends React.Component {
   }
 
   render () {
-    const { suffix, prefix, title, imgPath, subTitle, className, changeHandler, value, index } = this.props
+    const {
+      changeHandler,
+      className,
+      formattedValue,
+      imgPath,
+      index,
+      phase2Content,
+      prefix,
+      subTitle,
+      suffix,
+      title,
+      value
+    } = this.props
 
     return (
       <div className={`
@@ -40,8 +52,8 @@ export default class IpQuestionPanel extends React.Component {
         <div className='ip-panel-top-container'>
           <img className='ip-panel-image' src={imgPath} />
           <div className='ip-panel-phase-2-content'>
-            <div className='ip-panel-phase-2-content-primary'>{value}</div>
-            <div className='ip-panel-phase-2-content-secondary'>years old</div>
+            <div className='ip-panel-phase-2-content-primary'>{formattedValue || value}</div>
+            <div className='ip-panel-phase-2-content-secondary'>{phase2Content}</div>
           </div>
         </div>
 

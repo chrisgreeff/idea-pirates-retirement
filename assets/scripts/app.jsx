@@ -1,5 +1,6 @@
 'use strict'
 
+import accounting from 'accounting'
 import React from 'react'
 import IpQuestionPanel from './components/question-panel.jsx'
 import IpSection from './components/section.jsx'
@@ -38,7 +39,10 @@ export default class IpApp extends React.Component {
   handleSalaryChange (event) {
     const { value } = event.target
 
-    this.setState({ salary: value })
+    this.setState({
+      salary: value,
+      formattedSalary: accounting.formatMoney(value, '$', 0)
+    })
   }
 
   handleLocationChange (event) {
@@ -82,7 +86,8 @@ export default class IpApp extends React.Component {
               imgPath='/images/salary.png'
               blurHandler={this.handlePanelBlur}
               changeHandler={this.handleSalaryChange}
-              value={this.state.salary} />
+              value={this.state.salary}
+              formattedValue={this.state.formattedSalary} />
             <IpQuestionPanel className='ip-mrxl'
               title='Where do you live?'
               subTitle='We are able to calculate an approximation of your expenditure based on your location.'
