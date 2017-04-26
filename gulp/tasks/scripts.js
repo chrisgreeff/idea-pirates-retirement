@@ -10,7 +10,7 @@ import buffer from 'vinyl-buffer'
 import watchify from 'watchify'
 import handleErrors from '../utils/handle-errors'
 
-function runBundler ({ bundler, destPath, destName }) {
+const _runBundler = ({ bundler, destPath, destName }) => {
   util.log(`Running bundler for ${destName}`)
 
   return bundler.bundle()
@@ -27,22 +27,31 @@ function runBundler ({ bundler, destPath, destName }) {
     })
 }
 
-gulp.task('scripts', () => {
+const _getBundler = (env) => {
   const destPath = './web/js'
   const destName = 'app.js'
-  const bundler = browserify({
+  const bundlerConfig = {
     entries: './assets/scripts/main.jsx',
     debug: true,
-    plugin: [watchify],
-    cache: {},
-    packageCache: {},
     transform: [
       babelify.configure({ compact: false, presets: [ 'es2015', 'react' ] })
     ]
-  })
+  }
 
-  bundler.on('update', () => runBundler({ bundler, destPath, destName }))
+  let bundler
+  if (env === 'dev') {
+    bundlerConfig.cache = {}
+    bundlerConfig.packageCache = {}
+    bundlerConfig.plugin = [watchify]
+    bundler = browserify(bundlerConfig)
+    bundler.on('update', () => _runBundler({ bundler, destPath, destName }))
+  } else {
+    bundler = browserify(bundlerConfig)
+  }
 
-  runBundler({ bundler, destPath, destName })
+  _runBundler({ bundler, destPath, destName })
   return bundler
-})
+}
+
+gulp.task('scripts', () => _getBundler('dev'))
+gulp.task('scripts:prod', () => _getBundler('prod'))
