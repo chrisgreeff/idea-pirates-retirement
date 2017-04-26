@@ -2,7 +2,8 @@
 
 import accounting from 'accounting'
 import React from 'react'
-import IpQuestionPanel from './components/question-panel.jsx'
+import IpQuestions from './components/questions.jsx'
+import IpAnswer from './components/answer.jsx'
 import IpSection from './components/section.jsx'
 
 const initialState = {
@@ -73,43 +74,16 @@ export default class IpApp extends React.Component {
           </div>
         </IpSection>
         <IpSection>
-          <div className='ip-flex'>
-            <IpQuestionPanel className='ip-mrxl'
-              title='What&#39;s your age?'
-              subTitle='We need to know how long you&#39;ve for until retirement kicks in.'
-              suffix='years'
-              index={1}
-              phase={this.state.phase}
-              phase2Content='years old'
-              imgPath='/images/age.png'
-              blurHandler={this.handlePanelBlur}
-              changeHandler={this.handleAgeChange}
-              value={this.state.age} />
-            <IpQuestionPanel className='ip-mrxl'
-              title='What&#39;s your average annual income?'
-              subTitle='We need to know how much money is coming into the bank.'
-              prefix='$'
-              suffix='annually'
-              index={2}
-              phase={this.state.phase}
-              phase2Content='annually'
-              imgPath='/images/salary.png'
-              blurHandler={this.handlePanelBlur}
-              changeHandler={this.handleSalaryChange}
-              value={this.state.salary}
-              formattedValue={this.state.formattedSalary} />
-            <IpQuestionPanel className='ip-mrxl'
-              title='Where do you live?'
-              subTitle='We are able to calculate an approximation of your expenditure based on your location.'
-              index={3}
-              phase={this.state.phase}
-              imgPath='/images/location.png'
-              blurHandler={this.handlePanelBlur}
-              changeHandler={this.handleLocationChange}
-              textType='text'
-              value={this.state.location} />
-          </div>
+          <IpQuestions
+            state={this.state}
+            blurHandler={this.handlePanelBlur}
+            ageChangeHandler={this.handleAgeChange}
+            salaryChangeHandler={this.handleSalaryChange}
+            locationChangeHandler={this.handleLocationChange} />
         </IpSection>
+        <ipSection>
+          <IpAnswer />
+        </ipSection>
       </div>
     )
   }
