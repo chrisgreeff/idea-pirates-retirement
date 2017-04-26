@@ -8,13 +8,33 @@
   padding: 25px;
   font-size: 14px;
   font-weight: @ip-font-weight--light;
+  max-height: 432px;
+  overflow: hidden;
+  transition-property: max-height, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 
   &.ip-active { transform: scale(1.05); }
+
+  &.ip-panel--phase-2 {
+    max-height: 116px;
+
+    .ip-panel-image {
+      left: 0;
+      width: 65px;
+    }
+
+    .ip-panel-bottom-container { opacity: 0; }
+    .ip-panel-phase-2-content { opacity: 1; right: 0; }
+
+    &:hover {
+      cursor: default !important;
+      transform: scale(1) !important;
+    }
+  }
 }
 
 .ip-panel--clickable {
-  transition: transform 0.1s ease-in-out;
-
   &, .ip-panel-input { cursor: pointer; }
   &:hover { transform: scale(1.05); }
 }
@@ -37,5 +57,34 @@
 
 .ip-panel-image {
   width: 120px;
-  margin-bottom: 20px;
+  position: absolute;
+  left: ~"calc(50% - 60px)";
+  transition-property: left, width;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 }
+
+.ip-panel-top-container {
+  position: relative;
+  height: 130px;
+}
+
+.ip-panel-bottom-container {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.ip-panel-phase-2-content {
+  position: absolute;
+  right: -50px;
+  text-align: right;
+  color: @colour-black;
+  font-weight: @ip-font-weight--regular;
+  opacity: 0;
+  transition-property: opacity, right;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.ip-panel-phase-2-content-primary { font-size: 36px; }
+.ip-panel-phase-2-content-secondary { font-size: 18px; }

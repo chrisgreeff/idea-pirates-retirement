@@ -13,7 +13,7 @@ export default class IpQuestionPanel extends React.Component {
   }
 
   onPanelClick () {
-    this.input.focus()
+    this.input.select()
     this.setState({ active: true })
   }
 
@@ -26,40 +26,51 @@ export default class IpQuestionPanel extends React.Component {
     const { suffix, prefix, title, imgPath, subTitle, className, changeHandler, value, index } = this.props
 
     return (
-      <div className={
-          `ip-panel ip-panel--clickable ip-align-center ${className || ''} ${this.state.active ? 'ip-active' : ''}`
-        }
+      <div className={`
+          ip-panel
+          ip-panel--clickable
+          ip-align-center
+          ${className || ''}
+          ${this.state.active ? 'ip-active' : ''}
+          ${this.props.phase === 2 ? 'ip-panel--phase-2' : ''}
+        `}
         ref={(panel) => { this.panel = panel }}
         onClick={this.onPanelClick}
         onBlur={this.onPanelBlur}>
-        <div className='ip-panel-image-container'>
+        <div className='ip-panel-top-container'>
           <img className='ip-panel-image' src={imgPath} />
+          <div className='ip-panel-phase-2-content'>
+            <div className='ip-panel-phase-2-content-primary'>{value}</div>
+            <div className='ip-panel-phase-2-content-secondary'>years old</div>
+          </div>
         </div>
 
-        <div className='ip-panel-title ip-mbl'>
-          {title}
-        </div>
+        <div className='ip-panel-bottom-container'>
+          <div className='ip-panel-title ip-mbm'>
+            {title}
+          </div>
 
-        <div className='ip-panel-sub-title'>
-          {subTitle}
-        </div>
+          <div className='ip-panel-sub-title'>
+            {subTitle}
+          </div>
 
-        <div className='ip-value ip-mtxl ip-mbxl'>
-          <input
-            className={
-              `ip-input ip-panel-input ${suffix ? 'ip-input--suffix' : ''} ${prefix ? 'ip-input--prefix' : ''}`
-            }
-            ref={(input) => { this.input = input }}
-            value={value}
-            onChange={changeHandler}
-            type='number' />
-          {prefix && <div className='ip-value-prefix'>{prefix}</div>}
-          {suffix && <div className='ip-value-suffix'>{suffix}</div>}
-        </div>
+          <div className='ip-value ip-mtxl ip-mbxl'>
+            <input
+              className={
+                `ip-input ip-panel-input ${suffix ? 'ip-input--suffix' : ''} ${prefix ? 'ip-input--prefix' : ''}`
+              }
+              ref={(input) => { this.input = input }}
+              value={value}
+              onChange={changeHandler}
+              type='number' />
+            {prefix && <div className='ip-value-prefix'>{prefix}</div>}
+            {suffix && <div className='ip-value-suffix'>{suffix}</div>}
+          </div>
 
-        <div className={`ip-circle ip-mrl ${index === 1 ? 'ip-active' : ''}`} />
-        <div className={`ip-circle ip-mrl ${index === 2 ? 'ip-active' : ''}`} />
-        <div className={`ip-circle ${index === 3 ? 'ip-active' : ''}`} />
+          <div className={`ip-circle ip-mrl ${index === 1 ? 'ip-active' : ''}`} />
+          <div className={`ip-circle ip-mrl ${index === 2 ? 'ip-active' : ''}`} />
+          <div className={`ip-circle ${index === 3 ? 'ip-active' : ''}`} />
+        </div>
       </div>
     )
   }

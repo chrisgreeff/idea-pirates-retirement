@@ -11,7 +11,8 @@ export default class IpApp extends React.Component {
     this.state = {
       age: 0,
       salary: 0,
-      location: ''
+      location: '',
+      phase: 1
     }
 
     this.handlePanelBlur = this.handlePanelBlur.bind(this)
@@ -21,7 +22,11 @@ export default class IpApp extends React.Component {
   }
 
   handlePanelBlur () {
-    console.log(this.state)
+    const { age, salary, location } = this.state
+
+    if (age && salary && location) {
+      this.setState({ phase: 2 })
+    }
   }
 
   handleAgeChange (event) {
@@ -60,6 +65,8 @@ export default class IpApp extends React.Component {
               subTitle='We need to know how long you&#39;ve for until retirement kicks in.'
               suffix='years'
               index={1}
+              phase={this.state.phase}
+              phase2Content='years old'
               imgPath='/images/age.png'
               blurHandler={this.handlePanelBlur}
               changeHandler={this.handleAgeChange}
@@ -70,6 +77,8 @@ export default class IpApp extends React.Component {
               prefix='$'
               suffix='annually'
               index={2}
+              phase={this.state.phase}
+              phase2Content='annually'
               imgPath='/images/salary.png'
               blurHandler={this.handlePanelBlur}
               changeHandler={this.handleSalaryChange}
@@ -78,6 +87,7 @@ export default class IpApp extends React.Component {
               title='Where do you live?'
               subTitle='We are able to calculate an approximation of your expenditure based on your location.'
               index={3}
+              phase={this.state.phase}
               imgPath='/images/location.png'
               blurHandler={this.handlePanelBlur}
               changeHandler={this.handleLocationChange}
