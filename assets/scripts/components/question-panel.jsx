@@ -4,11 +4,33 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export default class IpQuestionPanel extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = { active: false }
+    this.onPanelClick = this.onPanelClick.bind(this)
+    this.onPanelBlur = this.onPanelBlur.bind(this)
+  }
+
+  onPanelClick () {
+    this.input.focus()
+    this.setState({ active: true })
+  }
+
+  onPanelBlur () {
+    this.setState({ active: false })
+  }
+
   render () {
     const { suffix, prefix, title, imgPath, subTitle, className, changeHandler, value, index } = this.props
 
     return (
-      <div className={`ip-panel ip-panel--clickable ip-align-center ${className || ''}`}>
+      <div className={
+          `ip-panel ip-panel--clickable ip-align-center ${className || ''} ${this.state.active ? 'ip-active' : ''}`
+        }
+        ref={(panel) => { this.panel = panel }}
+        onClick={this.onPanelClick}
+        onBlur={this.onPanelBlur}>
         <div className='ip-panel-image-container'>
           <img className='ip-panel-image' src={imgPath} />
         </div>
@@ -26,6 +48,7 @@ export default class IpQuestionPanel extends React.Component {
             className={
               `ip-input ip-panel-input ${suffix ? 'ip-input--suffix' : ''} ${prefix ? 'ip-input--prefix' : ''}`
             }
+            ref={(input) => { this.input = input }}
             value={value}
             onChange={changeHandler}
             type='number' />
