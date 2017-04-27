@@ -10,7 +10,8 @@ const initialState = {
   age: 0,
   salary: 0,
   location: '',
-  phase: 1
+  phase: 1,
+  result: ''
 }
 
 export default class IpApp extends React.Component {
@@ -18,11 +19,16 @@ export default class IpApp extends React.Component {
     super(props)
 
     this.state = initialState
+    this.crunchNumbers = this.crunchNumbers.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.handlePanelBlur = this.handlePanelBlur.bind(this)
     this.handleAgeChange = this.handleAgeChange.bind(this)
     this.handleSalaryChange = this.handleSalaryChange.bind(this)
     this.handleLocationChange = this.handleLocationChange.bind(this)
+  }
+
+  crunchNumbers () {
+    this.setState({ result: 'hai' })
   }
 
   handleReset () {
@@ -34,6 +40,7 @@ export default class IpApp extends React.Component {
 
     if (age && salary && location) {
       this.setState({ phase: 2 })
+      setTimeout(this.crunchNumbers, 3000)
     }
   }
 
