@@ -34,7 +34,7 @@ export default class IpQuestions extends React.Component {
           changeHandler={salaryChangeHandler}
           value={state.salary}
           formattedValue={state.formattedSalary} />
-        <IpQuestionPanel className='ip-mrxl'
+        <IpQuestionPanel
           title='Where do you live?'
           subTitle='We are able to calculate an approximation of your expenditure based on your location.'
           index={3}

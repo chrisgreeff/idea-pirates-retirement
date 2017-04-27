@@ -93,7 +93,7 @@ export default class IpQuestionPanel extends React.Component {
 IpQuestionPanel.propTypes = {
   blurHandler: PropTypes.func.isRequired,
   changeHandler: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   index: PropTypes.number.isRequired,
   imgPath: PropTypes.string.isRequired,
   prefix: PropTypes.string,

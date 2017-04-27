@@ -81,9 +81,9 @@ export default class IpApp extends React.Component {
             salaryChangeHandler={this.handleSalaryChange}
             locationChangeHandler={this.handleLocationChange} />
         </IpSection>
-        <ipSection>
-          <IpAnswer />
-        </ipSection>
+        <IpSection>
+          <IpAnswer state={this.state} />
+        </IpSection>
       </div>
     )
   }
