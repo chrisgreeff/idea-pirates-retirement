@@ -15,5 +15,40 @@
 }
 
 .ip-compare-value {
-  
+  display: flex;
+  flex-direction: column;
+  color: @colour-black;
 }
+
+.ip-compare-value--from {
+  .ip-compare-value-gross,
+  .ip-compare-value-net { justify-content: flex-end; }
+}
+
+.ip-compare-value--to {
+  .ip-compare-value-gross,
+  .ip-compare-value-net { justify-content: flex-start; }
+}
+
+.ip-compare-value-gross,
+.ip-compare-value-net {
+  display: flex;
+  align-items: center;
+}
+
+.ip-compare-value-gross {
+  font-size: 24px;
+}
+
+.ip-compare-value-net {
+  font-size: 36px;
+}
+
+.ip-compare-value-net-suffix,
+.ip-compare-value-gross-suffix {
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
+.ip-compare-value-gross-suffix { font-size: 14px; }
+.ip-compare-value-net-suffix { font-size: 20px; }
