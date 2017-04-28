@@ -68,7 +68,7 @@ export default class IpQuestionPanel extends React.Component {
             {subTitle}
           </div>
 
-          <div className='ip-value ip-mtxl ip-mbxl'>
+          <div className='ip-value ip-mtxl ip-mbl'>
             <input
               className={
                 `ip-input ip-panel-input ${suffix ? 'ip-input--suffix' : ''} ${prefix ? 'ip-input--prefix' : ''}`
@@ -81,9 +81,7 @@ export default class IpQuestionPanel extends React.Component {
             {suffix && <div className='ip-value-suffix'>{suffix}</div>}
           </div>
 
-          <div className={`ip-circle ip-mrl ${index === 1 ? 'ip-active' : ''}`} />
-          <div className={`ip-circle ip-mrl ${index === 2 ? 'ip-active' : ''}`} />
-          <div className={`ip-circle ${index === 3 ? 'ip-active' : ''}`} />
+          <div className='ip-panel-number'>{index}</div>
         </div>
       </div>
     )

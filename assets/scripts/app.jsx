@@ -28,7 +28,18 @@ export default class IpApp extends React.Component {
   }
 
   crunchNumbers () {
-    this.setState({ result: 'hai' })
+    this.setState({
+      result: {
+        from: {
+          gross: 2756,
+          net: 2345
+        },
+        to: {
+          gross: 2121,
+          net: 1845
+        }
+      }
+    })
   }
 
   handleReset () {
@@ -40,7 +51,7 @@ export default class IpApp extends React.Component {
 
     if (age && salary && location) {
       this.setState({ phase: 2 })
-      setTimeout(this.crunchNumbers, 3000)
+      setTimeout(this.crunchNumbers, 0)
     }
   }
 
@@ -74,7 +85,7 @@ export default class IpApp extends React.Component {
         </a>
         <IpSection>
           <div className='ip-title ip-mtxl'>
-            Retire&#39;o&#39;rama
+            Wealth Builder
           </div>
           <div className='ip-title ip-title--sub'>
             Let's calculate your retirement income with just 3 questions!

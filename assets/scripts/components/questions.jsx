@@ -25,7 +25,7 @@ export default class IpQuestions extends React.Component {
           title='What&#39;s your average annual income?'
           subTitle='We need to know how much money is coming into the bank.'
           prefix='$'
-          suffix='annually'
+          suffix='per year'
           index={2}
           phase={state.phase}
           phase2Content='annually'

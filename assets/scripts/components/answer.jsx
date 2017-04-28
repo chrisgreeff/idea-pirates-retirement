@@ -2,6 +2,7 @@
 
 import React from 'react'
 import IpSpinner from './spinner.jsx'
+import IpCompareValues from './compare-values.jsx'
 
 export default class IpAnswer extends React.Component {
   componentWillUpdate (props) {
@@ -34,6 +35,10 @@ export default class IpAnswer extends React.Component {
             <div className='ip-panel-sub-title ip-height-a ip-mbl'>
               This shows how your weekly income now compare with that we expect it to be at retirement
             </div>
+
+            <IpCompareValues
+              from={state.result.from}
+              to={state.result.to} />
 
             <hr className='ip-hr ip-mtxl ip-mbxl' />
 
