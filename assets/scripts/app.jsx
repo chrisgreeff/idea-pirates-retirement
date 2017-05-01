@@ -21,10 +21,10 @@ export default class IpApp extends React.Component {
     this.state = initialState
     this.crunchNumbers = this.crunchNumbers.bind(this)
     this.handleReset = this.handleReset.bind(this)
-    this.handlePanelBlur = this.handlePanelBlur.bind(this)
     this.handleAgeChange = this.handleAgeChange.bind(this)
     this.handleSalaryChange = this.handleSalaryChange.bind(this)
     this.handleLocationChange = this.handleLocationChange.bind(this)
+    this.submit = this.submit.bind(this)
   }
 
   crunchNumbers () {
@@ -44,38 +44,42 @@ export default class IpApp extends React.Component {
 
   submit () {
     this.setState({ phase: 2 })
-    setTimeout(this.crunchNumbers, 0)
+    setTimeout(this.crunchNumbers, 3000)
   }
 
   handleReset () {
     this.setState(initialState)
   }
 
-  handlePanelBlur () {
-    const { age, salary, location } = this.state
-
-    this.setState({ submitReady: age && salary && location })
-  }
-
   handleAgeChange (event) {
+    const { salary, location } = this.state
     const { value } = event.target
 
-    this.setState({ age: value })
+    this.setState({
+      age: value,
+      submitReady: value && salary && location
+    })
   }
 
   handleSalaryChange (event) {
+    const { age, location } = this.state
     const { value } = event.target
 
     this.setState({
       salary: value,
-      formattedSalary: accounting.formatMoney(value, '$', 0)
+      formattedSalary: accounting.formatMoney(value, '$', 0),
+      submitReady: age && value && location
     })
   }
 
   handleLocationChange (event) {
+    const { age, salary } = this.state
     const { value } = event.target
 
-    this.setState({ location: value })
+    this.setState({
+      location: value,
+      submitReady: age && salary && value
+    })
   }
 
   render () {
@@ -96,14 +100,15 @@ export default class IpApp extends React.Component {
         <IpSection>
           <IpQuestions
             state={this.state}
-            blurHandler={this.handlePanelBlur}
             ageChangeHandler={this.handleAgeChange}
             salaryChangeHandler={this.handleSalaryChange}
             locationChangeHandler={this.handleLocationChange} />
-          <button className={`ip-button ${!this.state.submitReady ? 'ip-disabled' : ''}`}
-            onClick={this.crunchNumbers}>
-            Go!
-          </button>
+          {this.state.phase === 1 && <div className='ip-align-center ip-mtl'>
+            <button className={`ip-button ${!this.state.submitReady ? 'ip-disabled' : ''}`}
+              onClick={this.submit}>
+              Go!
+            </button>
+          </div>}
         </IpSection>
         <IpSection>
           <IpAnswer state={this.state} />

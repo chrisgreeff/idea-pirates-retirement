@@ -6,7 +6,7 @@ import IpQuestionPanel from './question-panel.jsx'
 
 export default class IpQuestions extends React.Component {
   render () {
-    const { ageChangeHandler, blurHandler, locationChangeHandler, salaryChangeHandler, state } = this.props
+    const { ageChangeHandler, locationChangeHandler, salaryChangeHandler, state } = this.props
 
     return (
       <div className='ip-flex'>
@@ -18,7 +18,6 @@ export default class IpQuestions extends React.Component {
           phase={state.phase}
           phase2Content='years old'
           imgPath='/images/age.png'
-          blurHandler={blurHandler}
           changeHandler={ageChangeHandler}
           value={state.age} />
         <IpQuestionPanel className='ip-mrxl ip-panel--middle'
@@ -30,7 +29,6 @@ export default class IpQuestions extends React.Component {
           phase={state.phase}
           phase2Content='annually'
           imgPath='/images/salary.png'
-          blurHandler={blurHandler}
           changeHandler={salaryChangeHandler}
           value={state.salary}
           formattedValue={state.formattedSalary} />
@@ -40,7 +38,6 @@ export default class IpQuestions extends React.Component {
           index={3}
           phase={state.phase}
           imgPath='/images/location.png'
-          blurHandler={blurHandler}
           changeHandler={locationChangeHandler}
           textType='text'
           value={state.location} />
@@ -51,7 +48,6 @@ export default class IpQuestions extends React.Component {
 
 IpQuestions.propTypes = {
   ageChangeHandler: PropTypes.func.isRequired,
-  blurHandler: PropTypes.func.isRequired,
   locationChangeHandler: PropTypes.func.isRequired,
   salaryChangeHandler: PropTypes.func.isRequired,
   state: PropTypes.object.isRequired

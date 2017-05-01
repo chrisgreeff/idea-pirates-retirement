@@ -19,7 +19,6 @@ export default class IpQuestionPanel extends React.Component {
 
   onPanelBlur () {
     this.setState({ active: false })
-    this.props.blurHandler()
   }
 
   render () {
@@ -90,7 +89,6 @@ export default class IpQuestionPanel extends React.Component {
 }
 
 IpQuestionPanel.propTypes = {
-  blurHandler: PropTypes.func.isRequired,
   changeHandler: PropTypes.func.isRequired,
   className: PropTypes.string,
   index: PropTypes.number.isRequired,
