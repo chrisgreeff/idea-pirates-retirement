@@ -21,7 +21,7 @@ export default class IpQuestions extends React.Component {
           blurHandler={blurHandler}
           changeHandler={ageChangeHandler}
           value={state.age} />
-        <IpQuestionPanel className='ip-mrxl'
+        <IpQuestionPanel className='ip-mrxl ip-panel--middle'
           title='What&#39;s your average annual income?'
           subTitle='We need to know how much money is coming into the bank.'
           prefix='$'

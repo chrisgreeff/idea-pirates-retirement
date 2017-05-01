@@ -31,7 +31,11 @@ export default class IpCompareValues extends React.Component {
             <div className='ip-compare-value-net-suffix'>net</div>
           </div>
         </div>
-        <div className='ip-compare-values-separator' />
+        <div className='ip-compare-values-separator-container'>
+          <div className='ip-compare-values-separator-label ip-compare-values-separator-label--left'>now</div>
+          <div className='ip-compare-values-separator' />
+          <div className='ip-compare-values-separator-label ip-compare-values-separator-label--right'>65 years old</div>
+        </div>
         <div className='ip-compare-value ip-compare-value--to'>
           <div className='ip-compare-value-gross'>
             <AnimatedNumber duration={1000} formatValue={n => this.formatValue(n)} value={to.gross} />

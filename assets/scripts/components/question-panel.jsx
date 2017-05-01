@@ -53,6 +53,7 @@ export default class IpQuestionPanel extends React.Component {
         <div className='ip-panel-top-container'>
           <img className='ip-panel-image' src={imgPath} />
           <div className='ip-panel-phase-2-content'>
+            {index === 2 && <div className='ip-panel-phase-2-content-secondary'>earn</div>}
             {phase2Content && <div className='ip-panel-phase-2-content-primary'>{formattedValue || value}</div>}
             {phase2Content && <div className='ip-panel-phase-2-content-secondary'>{phase2Content}</div>}
             {!phase2Content && <div className='ip-panel-phase-2-content-secondary'>{value}</div>}
