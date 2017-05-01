@@ -4,9 +4,9 @@ import gulp from 'gulp'
 import runSequence from 'run-sequence'
 
 gulp.task('build', () => {
-  return runSequence(['fonts', 'standard', 'html', 'images', 'videos', 'styles', 'scripts'])
+  return runSequence(['fonts', 'vendor', 'standard', 'html', 'images', 'styles', 'scripts'])
 })
 
 gulp.task('build:prod', () => {
-  return runSequence(['fonts', 'standard', 'html', 'images', 'videos', 'styles', 'scripts:prod'])
+  return runSequence(['fonts', 'vendor', 'standard', 'html', 'images', 'styles', 'scripts:prod'])
 })

@@ -3,6 +3,7 @@
 import React from 'react'
 import IpSpinner from './spinner.jsx'
 import IpCompareValues from './compare-values.jsx'
+import IpLifetimeWealthProjection from './lifetime-wealth-projection.jsx'
 
 export default class IpAnswer extends React.Component {
   componentWillUpdate (props) {
@@ -32,7 +33,7 @@ export default class IpAnswer extends React.Component {
             <div className='ip-panel-title ip-height-a ip-mbm'>
               Weekly Income
             </div>
-            <div className='ip-panel-sub-title ip-height-a ip-mbl'>
+            <div className='ip-panel-sub-title ip-height-a ip-mbxl'>
               This shows how your weekly income now compare with that we expect it to be at retirement
             </div>
 
@@ -48,6 +49,8 @@ export default class IpAnswer extends React.Component {
             <div className='ip-panel-sub-title ip-height-a ip-mbl'>
               This shows how we expect your wealth to look over significant periods of your life
             </div>
+
+            <IpLifetimeWealthProjection />
 
             <hr className='ip-hr ip-mtxl ip-mbxl' />
 
