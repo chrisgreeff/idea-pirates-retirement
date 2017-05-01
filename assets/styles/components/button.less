@@ -1,10 +1,6 @@
-.ip-next-button {
+.ip-button {
   background: none;
   color: @colour-biscay;
-  border: 3px solid @colour-biscay;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -13,6 +9,7 @@
   cursor: pointer;
   outline: none;
 
+  &.ip-disabled,
   &[disabled],
   &:disabled {
     pointer-events: none;

@@ -11,7 +11,7 @@ export default class IpQuestions extends React.Component {
     return (
       <div className='ip-flex'>
         <IpQuestionPanel className='ip-mrxl'
-          title='What&#39;s your age?'
+          title='How young are you?'
           subTitle='We need to know how long you&#39;ve for until retirement kicks in.'
           suffix='years'
           index={1}

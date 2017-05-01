@@ -42,6 +42,11 @@ export default class IpApp extends React.Component {
     })
   }
 
+  submit () {
+    this.setState({ phase: 2 })
+    setTimeout(this.crunchNumbers, 0)
+  }
+
   handleReset () {
     this.setState(initialState)
   }
@@ -49,10 +54,7 @@ export default class IpApp extends React.Component {
   handlePanelBlur () {
     const { age, salary, location } = this.state
 
-    if (age && salary && location) {
-      this.setState({ phase: 2 })
-      setTimeout(this.crunchNumbers, 0)
-    }
+    this.setState({ submitReady: age && salary && location })
   }
 
   handleAgeChange (event) {
@@ -84,7 +86,7 @@ export default class IpApp extends React.Component {
           Reset
         </a>
         <IpSection>
-          <div className='ip-title ip-mtxl'>
+          <div className='ip-title ip-mtl'>
             Wealth Builder
           </div>
           <div className='ip-title ip-title--sub'>
@@ -98,6 +100,10 @@ export default class IpApp extends React.Component {
             ageChangeHandler={this.handleAgeChange}
             salaryChangeHandler={this.handleSalaryChange}
             locationChangeHandler={this.handleLocationChange} />
+          <button className={`ip-button ${!this.state.submitReady ? 'ip-disabled' : ''}`}
+            onClick={this.crunchNumbers}>
+            Go!
+          </button>
         </IpSection>
         <IpSection>
           <IpAnswer state={this.state} />
