@@ -8,10 +8,10 @@ export default class IpSlider extends React.Component {
     const sliderNode = $('.ip-slider')
 
     sliderNode.slider({
-      min: 25,
-      max: 100,
-      values: [25, 65, 75, 85]
-    }).slider('pips').on('slidechange', (e, { handle, handleIndex, value, values }) => {
+      min: 2017,
+      max: 2092,
+      values: [2017, 2060, 2075, 2092]
+    }).slider('float').slider('pips').on('slidechange', (e, { handle, handleIndex, value, values }) => {
       if (values.length === 1) { return }
 
       if (handleIndex === 0) {
@@ -55,7 +55,9 @@ export default class IpSlider extends React.Component {
     return (
       <div className='ip-full-h ip-relative'>
         <IpSection>
-          <div className='ip-slider' />
+          <div className='ip-mtxl'>
+            <div className='ip-slider' />
+          </div>
         </IpSection>
       </div>
     )
