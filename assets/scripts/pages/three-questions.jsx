@@ -2,9 +2,9 @@
 
 import accounting from 'accounting'
 import React from 'react'
-import IpQuestions from './components/questions.jsx'
-import IpAnswer from './components/answer.jsx'
-import IpSection from './components/section.jsx'
+import IpQuestions from '../components/questions.jsx'
+import IpAnswer from '../components/answer.jsx'
+import IpSection from '../components/section.jsx'
 
 const initialState = {
   age: 0,
@@ -14,7 +14,7 @@ const initialState = {
   result: ''
 }
 
-export default class IpApp extends React.Component {
+export default class IpThreeQuestions extends React.Component {
   constructor (props) {
     super(props)
 

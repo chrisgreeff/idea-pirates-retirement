@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "d3": "3"
+    "d3": "3",
+    "jQuery-ui-Slider-Pips": "jquery-ui-slider-pips#^1.11.4"
   }
 }
