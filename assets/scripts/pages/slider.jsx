@@ -5,20 +5,24 @@ import IpSection from '../components/section.jsx'
 
 export default class IpSlider extends React.Component {
   componentDidMount () {
-    $('.ip-slider').slider({
+    const sliderNode = $('.ip-slider')
+
+    sliderNode.slider({
       min: 25,
       max: 100,
       values: [25, 65, 75, 85]
     }).slider('pips').on('slidechange', (e, { handle, handleIndex, value, values }) => {
       if (handleIndex === 0) {
-        console.log('do left check');
+        if (values.length > 1 && value > values[1]) {
+          sliderNode.slider('values', handleIndex, values[1])
+        }
       } else if (handleIndex > 0 && handleIndex < values.length - 1) {
         console.log('do check');
       } else {
-        console.log('do right check');
+        if (values.length > 1 && value < values[values.length - 2]) {
+          sliderNode.slider('values', handleIndex, values[values.length - 2])
+        }
       }
-
-      console.log(handleIndex)
     })
 
     $('.ui-slider-handle').each((index, el) => {
