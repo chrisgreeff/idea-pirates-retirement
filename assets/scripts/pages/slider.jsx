@@ -4,13 +4,22 @@ import React from 'react'
 import IpSection from '../components/section.jsx'
 
 export default class IpSlider extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.renderSlider = this.renderSlider.bind(this)
+  }
   componentDidMount () {
+    this.renderSlider()
+  }
+
+  renderSlider () {
     const sliderNode = $('.ip-slider')
 
     sliderNode.slider({
       min: 2017,
-      max: 2092,
-      values: [2017, 2060, 2075, 2092]
+      max: 2095,
+      values: [2017, 2065, 2075, 2085, 2095]
     }).slider('float').slider('pips').on('slidechange', (e, { handle, handleIndex, value, values }) => {
       if (values.length === 1) { return }
 
@@ -41,6 +50,8 @@ export default class IpSlider extends React.Component {
         copy = 'Semi Retired'
       } else if (index === 2) {
         copy = 'Active Retirement'
+      } else if (index === 3) {
+        copy = 'Less Active Retirement'
       } else {
         copy = 'Old Age'
       }
