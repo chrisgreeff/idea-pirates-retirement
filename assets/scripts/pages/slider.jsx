@@ -12,15 +12,21 @@ export default class IpSlider extends React.Component {
       max: 100,
       values: [25, 65, 75, 85]
     }).slider('pips').on('slidechange', (e, { handle, handleIndex, value, values }) => {
+      if (values.length === 1) { return }
+
       if (handleIndex === 0) {
-        if (values.length > 1 && value > values[1]) {
+        if (value > values[1]) {
           sliderNode.slider('values', handleIndex, values[1])
         }
       } else if (handleIndex > 0 && handleIndex < values.length - 1) {
-        console.log('do check');
+        if (value > values[handleIndex + 1]) {
+          sliderNode.slider('values', handleIndex, values[handleIndex + 1])
+        } else if (value < values[handleIndex - 1]) {
+          sliderNode.slider('values', handleIndex, values[handleIndex - 1])
+        }
       } else {
-        if (values.length > 1 && value < values[values.length - 2]) {
-          sliderNode.slider('values', handleIndex, values[values.length - 2])
+        if (value < values[handleIndex - 1]) {
+          sliderNode.slider('values', handleIndex, values[handleIndex - 1])
         }
       }
     })
