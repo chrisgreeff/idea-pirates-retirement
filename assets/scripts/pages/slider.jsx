@@ -8,18 +8,39 @@ export default class IpSlider extends React.Component {
     super(props)
 
     this.renderSlider = this.renderSlider.bind(this)
-  }
-  componentDidMount () {
-    this.renderSlider()
+    this.onCurrentPhaseChange = this.onCurrentPhaseChange.bind(this)
   }
 
-  renderSlider () {
+  componentDidMount () {
+    this.renderSlider('working')
+  }
+
+  renderSlider (currentPhase) {
     const sliderNode = $('.ip-slider')
+    let values
+    let labels
+
+    if (currentPhase === 'working') {
+      values = [2017, 2065, 2075, 2085, 2095]
+      labels = ['Working', 'Semi Retired', 'Active Retirement', 'Less Active Retirement', 'Old Age']
+    } else if (currentPhase === 'semi-retired') {
+      values = [2065, 2075, 2085, 2095]
+      labels = ['Semi Retired', 'Active Retirement', 'Less Active Retirement', 'Old Age']
+    } else if (currentPhase === 'active-retirement') {
+      values = [2075, 2085, 2095]
+      labels = ['Active Retirement', 'Less Active Retirement', 'Old Age']
+    } else if (currentPhase === 'less-active-retirement') {
+      values = [2085, 2095]
+      labels = ['Less Active Retirement', 'Old Age']
+    } else {
+      values = [2095]
+      labels = ['Old Age']
+    }
 
     sliderNode.slider({
       min: 2017,
       max: 2095,
-      values: [2017, 2065, 2075, 2085, 2095]
+      values
     }).slider('float').slider('pips').on('slidechange', (e, { handle, handleIndex, value, values }) => {
       if (values.length === 1) { return }
 
@@ -41,36 +62,39 @@ export default class IpSlider extends React.Component {
     })
 
     $('.ui-slider-handle').each((index, el) => {
-      const node = $(el)
-      let copy
-
-      if (index === 0) {
-        copy = 'Working'
-      } else if (index === 1) {
-        copy = 'Semi Retired'
-      } else if (index === 2) {
-        copy = 'Active Retirement'
-      } else if (index === 3) {
-        copy = 'Less Active Retirement'
-      } else {
-        copy = 'Old Age'
-      }
-
-      node.append(`<div class="ip-slider-handle-label">${copy}</div>`)
+      $(el).append(`<div class="ip-slider-handle-label">${labels[index]}</div>`)
     })
   }
 
+  onCurrentPhaseChange (event) {
+    const value = event.target.value
+    const sliderNode = $('.ip-slider')
+
+    sliderNode.slider('destroy')
+    this.renderSlider(value)
+  }
+
   render () {
-    // @TODO Add a select dropdown that allows the user to select their current life phase. (This should remove all
-    // handles prior to the selected stage)
     return (
-      <div className='ip-full-h ip-relative'>
-        <IpSection>
-          <div className='ip-mtxl'>
-            <div className='ip-slider' />
+      <IpSection>
+        <div className='ip-flex'>
+          <div className='ip-field'>
+            <div className='ip-label'>Current Phase</div>
+            <div className='ip-value'>
+              <select className='ip-select' onChange={this.onCurrentPhaseChange}>
+                <option value='working'>Working</option>
+                <option value='semi-retired'>Semi Retired</option>
+                <option value='active-retirement'>Active Retirement</option>
+                <option value='less-active-retirement'>Less Active Retirement</option>
+                <option value='old-age'>Old Age</option>
+              </select>
+            </div>
           </div>
-        </IpSection>
-      </div>
+        </div>
+        <div className='ip-mtxl'>
+          <div className='ip-slider' />
+        </div>
+      </IpSection>
     )
   }
 }

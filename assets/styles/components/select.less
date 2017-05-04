@@ -1,0 +1,17 @@
+.ip-select {
+  &:extend(.ip-input-base);
+
+  padding: 12px;
+  border: 1px solid @colour-biscay;
+  border-radius: 5px;
+  background-color: @colour-white;
+  transition: border-color ease-in-out .2s;
+
+  &:focus { border-color: lighten(@colour-biscay, 20%); }
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,27 @@
+.ip-repeating-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ip-repeating-list-item {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: @colour-white;
+  border: 1px solid gray;
+
+  &.ip-expanded {
+    .ip-repeating-list-item-primary { display: none; }
+    .ip-repeating-list-item-secondary { display: block; }
+  }
+}
+
+.ip-repeating-list-item-primary {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.ip-repeating-list-item-secondary {
+  padding: 10px;
+  display: none;
+}
