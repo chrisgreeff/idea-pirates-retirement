@@ -7,7 +7,39 @@ export default class IpRepeatingListItem extends React.Component {
     super(props)
 
     this.toggleExpand = this.toggleExpand.bind(this)
+    this.whatChangeHandler = this.whatChangeHandler.bind(this)
+    this.whyChangeHandler = this.whyChangeHandler.bind(this)
+    this.whenChangeHandler = this.whenChangeHandler.bind(this)
+    this.howChangeHandler = this.howChangeHandler.bind(this)
     this.removeItem = this.removeItem.bind(this)
+  }
+
+  whatChangeHandler (event) {
+    const { item, index } = this.props
+
+    this.props.item.what = event.target.value
+    this.props.changeHandler(index, item)
+  }
+
+  whyChangeHandler (event) {
+    const { item, index } = this.props
+
+    this.props.item.why = event.target.value
+    this.props.changeHandler(index, item)
+  }
+
+  whenChangeHandler (event) {
+    const { item, index } = this.props
+
+    this.props.item.when = event.target.value
+    this.props.changeHandler(index, item)
+  }
+
+  howChangeHandler (event) {
+    const { item, index } = this.props
+
+    this.props.item.how = event.target.value
+    this.props.changeHandler(index, item)
   }
 
   toggleExpand () {
@@ -27,8 +59,7 @@ export default class IpRepeatingListItem extends React.Component {
       <li className={`
           ip-repeating-list-item
           ${item.expanded ? 'ip-expanded' : ''}
-        `}
-        ref={(item) => { this.item = item }}>
+        `}>
         <div className='ip-repeating-list-item-primary' onClick={this.toggleExpand}>
           {this.props.item.what}
           <a href='javascript:void(0)' onClick={this.removeItem}>Remove</a>
@@ -40,7 +71,8 @@ export default class IpRepeatingListItem extends React.Component {
             </div>
             <div className='ip-value'>
               <input className={`ip-input`}
-                defaultValue={this.props.item.what}
+                value={this.props.item.what}
+                onChange={this.whatChangeHandler}
                 type='text' />
             </div>
           </div>
@@ -50,7 +82,8 @@ export default class IpRepeatingListItem extends React.Component {
             </div>
             <div className='ip-value'>
               <input className={`ip-input`}
-                defaultValue={this.props.item.why}
+                value={this.props.item.why}
+                onChange={this.whyChangeHandler}
                 type='text' />
             </div>
           </div>
@@ -60,7 +93,8 @@ export default class IpRepeatingListItem extends React.Component {
             </div>
             <div className='ip-value'>
               <input className={`ip-input`}
-                defaultValue={this.props.item.when}
+                value={this.props.item.when}
+                onChange={this.whenChangeHandler}
                 type='text' />
             </div>
           </div>
@@ -70,7 +104,8 @@ export default class IpRepeatingListItem extends React.Component {
             </div>
             <div className='ip-value'>
               <input className={`ip-input`}
-                defaultValue={this.props.item.how}
+                value={this.props.item.how}
+                onChange={this.howChangeHandler}
                 type='text' />
             </div>
           </div>

@@ -13,6 +13,7 @@ export default class IpRepeatingList extends React.Component {
     this.removeItem = this.removeItem.bind(this)
     this.addItem = this.addItem.bind(this)
     this.toggleExpand = this.toggleExpand.bind(this)
+    this.changeHandler = this.changeHandler.bind(this)
   }
 
   removeItem (index) {
@@ -48,6 +49,14 @@ export default class IpRepeatingList extends React.Component {
     this.setState({ items })
   }
 
+  changeHandler (index, item) {
+    const { items } = this.state
+
+    items[index] = item
+
+    this.setState({ items })
+  }
+
   render () {
     const { items } = this.state
     const repeatingListItems = items.map((item, index) => {
@@ -55,7 +64,8 @@ export default class IpRepeatingList extends React.Component {
         key={index}
         index={index}
         removeItem={this.removeItem}
-        toggleExpand={this.toggleExpand} />
+        toggleExpand={this.toggleExpand}
+        changeHandler={this.changeHandler} />
     })
 
     return (
