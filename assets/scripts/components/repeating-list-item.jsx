@@ -6,26 +6,27 @@ export default class IpRepeatingListItem extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { expanded: false }
     this.toggleExpand = this.toggleExpand.bind(this)
     this.removeItem = this.removeItem.bind(this)
   }
 
   toggleExpand () {
-    this.setState({ expanded: !this.state.expanded })
+    this.props.toggleExpand(this.props.index)
   }
 
   removeItem (event) {
     event.preventDefault()
     event.stopPropagation()
-    this.props.removeItem(this.props.item.key)
+    this.props.removeItem(this.props.index)
   }
 
   render () {
+    const { item } = this.props
+
     return (
       <li className={`
           ip-repeating-list-item
-          ${this.state.expanded ? 'ip-expanded' : ''}
+          ${item.expanded ? 'ip-expanded' : ''}
         `}
         ref={(item) => { this.item = item }}>
         <div className='ip-repeating-list-item-primary' onClick={this.toggleExpand}>
