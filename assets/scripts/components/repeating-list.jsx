@@ -44,6 +44,10 @@ export default class IpRepeatingList extends React.Component {
   toggleExpand (index) {
     const { items } = this.state
 
+    forEach(items, (item) => {
+      item.expanded = false
+    })
+
     items[index].expanded = !items[index].expanded
 
     this.setState({ items })
