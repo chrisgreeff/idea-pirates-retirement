@@ -61,7 +61,7 @@ export default class IpRepeatingListItem extends React.Component {
           ${item.expanded ? 'ip-expanded' : ''}
         `}>
         <div className='ip-repeating-list-item-primary' onClick={this.toggleExpand}>
-          {this.props.item.what}
+          <span>{this.props.item.what}</span>
           <a href='javascript:void(0)' onClick={this.removeItem}>Remove</a>
         </div>
         <div className='ip-repeating-list-item-secondary'>
@@ -110,7 +110,7 @@ export default class IpRepeatingListItem extends React.Component {
             </div>
           </div>
           <div>
-            <a href='javascript:void(0)' onClick={this.toggleExpand}>Collapse</a>
+            <a className='ip-ib ip-mtm' href='javascript:void(0)' onClick={this.toggleExpand}>Collapse</a>
           </div>
         </div>
       </li>
