@@ -12,7 +12,7 @@ export default class RepeatingTable extends React.Component {
     this.state = {
       rows: [{
         id: ipUuidService.generate(),
-        title: 'Income',
+        title: 'Entertainment',
         checked: false,
         expanded: false,
         subRows: [{
@@ -25,6 +25,28 @@ export default class RepeatingTable extends React.Component {
           checked: false
         }, {
           title: 'Movies, shows, etc...',
+          working: 300,
+          semiRetired: 200,
+          activeRetirement: 200,
+          lessActiveRetirement: 233,
+          oldAge: 123,
+          checked: false
+        }]
+      }, {
+        id: ipUuidService.generate(),
+        title: 'Living Costs',
+        checked: false,
+        expanded: false,
+        subRows: [{
+          title: 'Food',
+          working: 300,
+          semiRetired: 200,
+          activeRetirement: 200,
+          lessActiveRetirement: 233,
+          oldAge: 123,
+          checked: false
+        }, {
+          title: 'Phone + Internet',
           working: 300,
           semiRetired: 200,
           activeRetirement: 200,
