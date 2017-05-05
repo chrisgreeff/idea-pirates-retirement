@@ -4,7 +4,7 @@ table { border-collapse: collapse; }
   width: 100%;
   border: 0;
   font-size: 12px;
-  background-color: @colour-white;
+  background-color: #FAFAFA;
 
   thead {
     color: gray;
@@ -19,8 +19,6 @@ table { border-collapse: collapse; }
   }
 
   tr {
-    &:nth-child(even) { background-color: #FAFAFA; }
-
     &:disabled,
     &.disabled,
     &[disabled] {
@@ -40,5 +38,31 @@ table { border-collapse: collapse; }
 
     &.ip-nowrap { white-space: nowrap; }
     .ip-checkbox { margin-bottom: -2px; }
+  }
+}
+
+.ip-table-sub-row {
+  td {
+    padding: 8px 18px;
+    background-color: @colour-white;
+  }
+}
+
+.ip-table-input {
+  &:extend(.ip-input-base);
+
+  padding: 5px;
+  border: 1px solid @colour-biscay;
+  border-radius: 5px;
+  background-color: @colour-white;
+  transition: border-color ease-in-out .2s;
+  height: 30px;
+
+  &:focus { border-color: lighten(@colour-biscay, 20%); }
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
   }
 }

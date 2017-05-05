@@ -38,6 +38,7 @@ export default class RepeatingTable extends React.Component {
     this.toggleExpandRow = this.toggleExpandRow.bind(this)
     this.toggleRowChecked = this.toggleRowChecked.bind(this)
     this.toggleSubRowChecked = this.toggleSubRowChecked.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   toggleExpandRow (row) {
@@ -70,23 +71,53 @@ export default class RepeatingTable extends React.Component {
     this.setState({ rows })
   }
 
+  handleInputChange (event, subRow, key) {
+    const { rows } = this.state
+
+    subRow[key] = event.target.value
+
+    this.setState({ rows })
+  }
+
   render () {
     const { rows } = this.state
     const rowsToRender = rows.map((row, index) => {
       const subRowsToRender = row.subRows.map((subRow, index) => {
         return (
-          <tr key={index} className={`${!row.expanded ? 'ip-hidden' : ''}`}>
-            <td>
-              <input checked={subRow.checked}
-                onChange={() => this.toggleSubRowChecked(row, subRow)}
-                type='checkbox' />
-              {subRow.title}
+          <tr key={index} className={`ip-table-sub-row ${!row.expanded ? 'ip-hidden' : ''}`}>
+            <td className='ip-plxl ip-nowrap'>
+              <label>
+                <input checked={subRow.checked}
+                  onChange={() => this.toggleSubRowChecked(row, subRow)}
+                  type='checkbox' />
+                {subRow.title}
+              </label>
             </td>
-            <td>{subRow.working}</td>
-            <td>{subRow.semiRetired}</td>
-            <td>{subRow.activeRetirement}</td>
-            <td>{subRow.lessActiveRetirement}</td>
-            <td>{subRow.oldAge}</td>
+            <td>
+              <input className='ip-table-input'
+                value={subRow.working}
+                onChange={(e) => this.handleInputChange(e, subRow, 'working')} />
+            </td>
+            <td>
+              <input className='ip-table-input'
+                value={subRow.semiRetired}
+                onChange={(e) => this.handleInputChange(e, subRow, 'semiRetired')} />
+            </td>
+            <td>
+              <input className='ip-table-input'
+                value={subRow.activeRetirement}
+                onChange={(e) => this.handleInputChange(e, subRow, 'activeRetirement')} />
+            </td>
+            <td>
+              <input className='ip-table-input'
+                value={subRow.lessActiveRetirement}
+                onChange={(e) => this.handleInputChange(e, subRow, 'lessActiveRetirement')} />
+            </td>
+            <td>
+              <input className='ip-table-input'
+                value={subRow.oldAge}
+                onChange={(e) => this.handleInputChange(e, subRow, 'oldAge')} />
+            </td>
           </tr>
         )
       })
