@@ -11,12 +11,13 @@ export default class TrendLine extends React.Component {
 
     this.state = {
       colour: '#5D9990',
-      values: [20345, 30123, 50345, 35123, 30012, 20345]
+      values: [20345, 30123, 50345, 35123, 30012, 20345],
+      trend: [15345, 25123, 55345, 40123, 25012, 18345]
     }
   }
 
   componentDidMount () {
-    const { colour, values } = this.state
+    const { colour, values, trend } = this.state
     const containerEl = this.el
     const projectionLabels = [
       'Now', 'Working', 'Semi Retired', 'Active Retirement', 'Less Active Retirement', 'Old Age'
@@ -24,7 +25,14 @@ export default class TrendLine extends React.Component {
     const chartMargins = { top: 20, bottom: 20, left: 0, right: 0 }
     const chartWidth = containerEl.clientWidth - chartMargins.left - chartMargins.right
     const chartHeight = 100
-    const y = d3.scale.linear().range([chartHeight, 0]).domain([0, max(values)])
+    const barWidth = (chartWidth / values.length) - 20
+    const y = d3.scale.linear().range([chartHeight, 0]).domain([0, max([max(values), max(trend)])])
+
+    const line = d3.svg.line()
+      .x((d, i) => (i * (chartWidth / trend.length)) + (barWidth / 2) + 10)
+      .y((d) => y(d) + chartMargins.top)
+      .interpolate('cardinal')
+      .tension(0.9)
 
     const svg = d3.select(containerEl)
       .append('svg')
@@ -33,8 +41,6 @@ export default class TrendLine extends React.Component {
 
     const chart = svg.append('g')
       .attr('transform', `translate(${chartMargins.left}, ${chartMargins.top})`)
-
-    const barWidth = (chartWidth / values.length) - 20
 
     const bars = chart.selectAll('rect')
       .data(values)
@@ -66,6 +72,11 @@ export default class TrendLine extends React.Component {
       .attr('text-anchor', 'middle')
       .attr('class', 'ip-projection-chart-bar-label')
       .text(0)
+
+    svg.append('path')
+     .data(trend)
+     .attr('class', 'ip-projection-chart-line')
+     .attr('d', line(trend))
 
     labels.transition()
       .duration(1000)
